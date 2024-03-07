@@ -51,7 +51,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
   timeStep = 300000,
   arrowColor = "grey",
   fontFamily = "Arial, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue",
-  fontSize = "14px",
+  fontSize = "10px",
   arrowIndent = 20,
   todayColor = "rgba(252, 248, 227, 0.5)",
   viewDate,
@@ -255,25 +255,25 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
   }, [ganttHeight, tasks, headerHeight, rowHeight]);
 
   // scroll events
- useEffect(() => {
-    const handleWheel = (event: WheelEvent) => {
-      if (event.shiftKey || event.deltaX) {
-        event.preventDefault();
-      } else if (ganttHeight) {
-        event.preventDefault();
-      }
+useEffect(() => {
+  const handleWheel = (event: WheelEvent) => {
+    if ((event.shiftKey || event.deltaX) && !ganttHeight) {
+      event.preventDefault();
+    } else if (ganttHeight) {
+      event.preventDefault();
+    }
 
-      setIgnoreScrollEvent(true);
-    };
+    setIgnoreScrollEvent(true);
+  };
 
-    // subscribe if scroll is necessary
-    const addEventListenerOptions = { passive: ganttHeight ? false : true };
-    wrapperRef.current?.addEventListener("wheel", handleWheel, addEventListenerOptions);
+  // subscribe if scroll is necessary
+  const addEventListenerOptions = { passive: !ganttHeight };
+  wrapperRef.current?.addEventListener("wheel", handleWheel, addEventListenerOptions);
 
-    return () => {
-      wrapperRef.current?.removeEventListener("wheel", handleWheel);
-    };
-  }, [wrapperRef, scrollY, scrollX, ganttHeight, svgWidth, rtl, ganttFullHeight]);
+  return () => {
+    wrapperRef.current?.removeEventListener("wheel", handleWheel);
+  };
+}, [wrapperRef, scrollY, scrollX, ganttHeight, svgWidth, rtl, ganttFullHeight]);
 
 
 
