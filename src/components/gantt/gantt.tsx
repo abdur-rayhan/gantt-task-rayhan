@@ -255,26 +255,6 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
   }, [ganttHeight, tasks, headerHeight, rowHeight]);
 
   // scroll events
-useEffect(() => {
-  const handleWheel = (event: WheelEvent) => {
-    if ((event.shiftKey || event.deltaX) && !ganttHeight) {
-      event.preventDefault();
-    } else if (ganttHeight) {
-      event.preventDefault();
-    }
-
-    setIgnoreScrollEvent(true);
-  };
-
-  // subscribe if scroll is necessary
-  const addEventListenerOptions = { passive: !ganttHeight };
-  wrapperRef.current?.addEventListener("wheel", handleWheel, addEventListenerOptions);
-
-  return () => {
-    wrapperRef.current?.removeEventListener("wheel", handleWheel);
-  };
-}, [wrapperRef, scrollY, scrollX, ganttHeight, svgWidth, rtl, ganttFullHeight]);
-
 
 
   const handleScrollY = (event: SyntheticEvent<HTMLDivElement>) => {
