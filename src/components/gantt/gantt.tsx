@@ -255,10 +255,10 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
   }, [ganttHeight, tasks, headerHeight, rowHeight]);
 
   // scroll events
-console.log('rayhan');
+console.log('rayha1n');
 
   const handleScrollY = (event: SyntheticEvent<HTMLDivElement>) => {
-    console.log('rayhan');
+    console.log('rayha1n');
     if (scrollY !== event.currentTarget.scrollTop && !ignoreScrollEvent) {
       setScrollY(event.currentTarget.scrollTop);
       setIgnoreScrollEvent(true);
