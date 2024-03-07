@@ -7,7 +7,7 @@
   -ms-user-select: none;
   user-select: none;
   pointer-events: none;
-  font-size: smaller;
+  font-size: xx-small;
 }
 
 .calendarTopTick {
@@ -23,11 +23,12 @@
   -ms-user-select: none;
   user-select: none;
   pointer-events: none;
-  font-size: smaller;
+  font-size: xx-small;
 }
 
 .calendarHeader {
   fill: #ffffff;
   stroke: #e0e0e0;
   stroke-width: 1.4;
+  font-size: xx-small;
 }
