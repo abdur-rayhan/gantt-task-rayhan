@@ -260,16 +260,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
       if (event.shiftKey || event.deltaX) {
         event.preventDefault();
       } else if (ganttHeight) {
-        let newScrollY = scrollY + event.deltaY;
-        if (newScrollY < 0) {
-          newScrollY = 0;
-        } else if (newScrollY > ganttFullHeight - ganttHeight) {
-          newScrollY = ganttFullHeight - ganttHeight;
-        }
-        if (newScrollY !== scrollY) {
-          setScrollY(newScrollY);
-          event.preventDefault();
-        }
+        event.preventDefault();
       }
 
       setIgnoreScrollEvent(true);
@@ -283,6 +274,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
       wrapperRef.current?.removeEventListener("wheel", handleWheel);
     };
   }, [wrapperRef, scrollY, scrollX, ganttHeight, svgWidth, rtl, ganttFullHeight]);
+
 
 
   const handleScrollY = (event: SyntheticEvent<HTMLDivElement>) => {
