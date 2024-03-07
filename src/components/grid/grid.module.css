@@ -1,5 +1,6 @@
 .gridRow {
   fill: #fff;
+  max-height: fit-content;
 }
 
 .gridRow:nth-child(even) {
