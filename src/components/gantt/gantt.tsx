@@ -284,21 +284,13 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
     };
 
     // subscribe if scroll is necessary
-    wrapperRef.current?.addEventListener("wheel", handleWheel, {
-      passive: false,
-    });
+    const addEventListenerOptions = { passive: ganttHeight ? false : true };
+    wrapperRef.current?.addEventListener("wheel", handleWheel, addEventListenerOptions);
+
     return () => {
       wrapperRef.current?.removeEventListener("wheel", handleWheel);
     };
-  }, [
-    wrapperRef,
-    scrollY,
-    scrollX,
-    ganttHeight,
-    svgWidth,
-    rtl,
-    ganttFullHeight,
-  ]);
+  }, [wrapperRef, scrollY, scrollX, ganttHeight, svgWidth, rtl, ganttFullHeight]);
 
   const handleScrollY = (event: SyntheticEvent<HTMLDivElement>) => {
     if (scrollY !== event.currentTarget.scrollTop && !ignoreScrollEvent) {
